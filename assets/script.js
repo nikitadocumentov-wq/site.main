@@ -3,10 +3,10 @@
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var touch=window.matchMedia('(hover:none),(pointer:coarse)').matches;
 
-  /* iOS Safari иногда требует первое касание для активации :hover и только второе засчитывает как клик — этот пустой обработчик отключает такое поведение */
+  /* iOS Safari РёРЅРѕРіРґР° С‚СЂРµР±СѓРµС‚ РїРµСЂРІРѕРµ РєР°СЃР°РЅРёРµ РґР»СЏ Р°РєС‚РёРІР°С†РёРё :hover Рё С‚РѕР»СЊРєРѕ РІС‚РѕСЂРѕРµ Р·Р°СЃС‡РёС‚С‹РІР°РµС‚ РєР°Рє РєР»РёРє вЂ” СЌС‚РѕС‚ РїСѓСЃС‚РѕР№ РѕР±СЂР°Р±РѕС‚С‡РёРє РѕС‚РєР»СЋС‡Р°РµС‚ С‚Р°РєРѕРµ РїРѕРІРµРґРµРЅРёРµ */
   if(touch){document.body.addEventListener('touchstart',function(){},{passive:true});}
 
-  /* переключатель языка (RU/EN/KA) через Google Translate */
+  /* РїРµСЂРµРєР»СЋС‡Р°С‚РµР»СЊ СЏР·С‹РєР° (RU/EN/KA) С‡РµСЂРµР· Google Translate */
   (function(){
     var STORAGE_KEY='documenti_lang';
     function getSavedLang(){
@@ -19,8 +19,8 @@
     function applyLang(lang, attemptsLeft){
       if(attemptsLeft===undefined)attemptsLeft=40;
       if(lang==='ru'){
-        // сброс на оригинал: чистим куку Google Translate и перезагружаем —
-        // это единственный надёжный способ вернуться к исходному языку
+        // СЃР±СЂРѕСЃ РЅР° РѕСЂРёРіРёРЅР°Р»: С‡РёСЃС‚РёРј РєСѓРєСѓ Google Translate Рё РїРµСЂРµР·Р°РіСЂСѓР¶Р°РµРј вЂ”
+        // СЌС‚Рѕ РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ РЅР°РґС‘Р¶РЅС‹Р№ СЃРїРѕСЃРѕР± РІРµСЂРЅСѓС‚СЊСЃСЏ Рє РёСЃС…РѕРґРЅРѕРјСѓ СЏР·С‹РєСѓ
         document.cookie='googtrans=/auto/ru; path=/';
         document.cookie='googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
         location.reload();
@@ -29,10 +29,10 @@
       var combo=findCombo();
       if(combo){
         combo.value=lang;
-        combo.dispatchEvent(new Event('change'));
+        combo.dispatchEvent(new Event('change',{bubbles:true}));
         setActive(lang);
       }else if(attemptsLeft>0){
-        // виджет Google Translate подгружается асинхронно — пробуем ещё раз через паузу
+        // РІРёРґР¶РµС‚ Google Translate РїРѕРґРіСЂСѓР¶Р°РµС‚СЃСЏ Р°СЃРёРЅС…СЂРѕРЅРЅРѕ вЂ” РїСЂРѕР±СѓРµРј РµС‰С‘ СЂР°Р· С‡РµСЂРµР· РїР°СѓР·Сѓ
         setTimeout(function(){ applyLang(lang, attemptsLeft-1); }, 250);
       }
     }
@@ -48,7 +48,7 @@
       });
     });
     setActive(getSavedLang());
-    // при заходе на страницу — если раньше выбрали EN/KA, применяем автоматически
+    // РїСЂРё Р·Р°С…РѕРґРµ РЅР° СЃС‚СЂР°РЅРёС†Сѓ вЂ” РµСЃР»Рё СЂР°РЅСЊС€Рµ РІС‹Р±СЂР°Р»Рё EN/KA, РїСЂРёРјРµРЅСЏРµРј Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё
     var saved=getSavedLang();
     if(saved!=='ru'){ applyLang(saved); }
   })();
@@ -62,7 +62,7 @@
   }
   onScroll(); addEventListener('scroll',onScroll,{passive:true});
 
-  /* «назад» возвращает на предыдущую страницу с сохранением позиции прокрутки */
+  /* В«РЅР°Р·Р°РґВ» РІРѕР·РІСЂР°С‰Р°РµС‚ РЅР° РїСЂРµРґС‹РґСѓС‰СѓСЋ СЃС‚СЂР°РЅРёС†Сѓ СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј РїРѕР·РёС†РёРё РїСЂРѕРєСЂСѓС‚РєРё */
   [].forEach.call(document.querySelectorAll('.back-link'),function(a){
     a.addEventListener('click',function(e){
       if(history.length>1 && document.referrer && document.referrer.indexOf(location.origin)===0){
@@ -71,12 +71,12 @@
     });
   });
 
-  /* кнопка ВЫГОДА → секция пакетов (работает и на сайте, и в предпросмотре) */
+  /* РєРЅРѕРїРєР° Р’Р«Р“РћР”Рђ в†’ СЃРµРєС†РёСЏ РїР°РєРµС‚РѕРІ (СЂР°Р±РѕС‚Р°РµС‚ Рё РЅР° СЃР°Р№С‚Рµ, Рё РІ РїСЂРµРґРїСЂРѕСЃРјРѕС‚СЂРµ) */
   [].forEach.call(document.querySelectorAll('.vygoda-fab'),function(f){
     f.addEventListener('click',function(e){
       var el=document.getElementById('pakety');
       if(el && el.offsetParent!==null){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); return; }
-      if(document.querySelector('.vpage')){ /* режим предпросмотра (один файл) */
+      if(document.querySelector('.vpage')){ /* СЂРµР¶РёРј РїСЂРµРґРїСЂРѕСЃРјРѕС‚СЂР° (РѕРґРёРЅ С„Р°Р№Р») */
         e.preventDefault(); location.hash='p-index';
         setTimeout(function(){var t=document.getElementById('pakety'); if(t)t.scrollIntoView({behavior:'smooth',block:'start'});},90);
       }
@@ -107,9 +107,9 @@
       });
     },{threshold:.12,rootMargin:'0px 0px -50px 0px'});
     revs.forEach(function(e){io.observe(e);});
-    /* защита: если перевод страницы или что-то ещё помешает сработать анимации —
-       принудительно показываем все ещё скрытые блоки через несколько секунд,
-       чтобы контент никогда не оставался невидимым навсегда */
+    /* Р·Р°С‰РёС‚Р°: РµСЃР»Рё РїРµСЂРµРІРѕРґ СЃС‚СЂР°РЅРёС†С‹ РёР»Рё С‡С‚Рѕ-С‚Рѕ РµС‰С‘ РїРѕРјРµС€Р°РµС‚ СЃСЂР°Р±РѕС‚Р°С‚СЊ Р°РЅРёРјР°С†РёРё вЂ”
+       РїСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РїРѕРєР°Р·С‹РІР°РµРј РІСЃРµ РµС‰С‘ СЃРєСЂС‹С‚С‹Рµ Р±Р»РѕРєРё С‡РµСЂРµР· РЅРµСЃРєРѕР»СЊРєРѕ СЃРµРєСѓРЅРґ,
+       С‡С‚РѕР±С‹ РєРѕРЅС‚РµРЅС‚ РЅРёРєРѕРіРґР° РЅРµ РѕСЃС‚Р°РІР°Р»СЃСЏ РЅРµРІРёРґРёРјС‹Рј РЅР°РІСЃРµРіРґР° */
     setTimeout(function(){
       document.querySelectorAll('.reveal:not(.in)').forEach(function(e){e.classList.add('in');});
     },4000);
@@ -118,14 +118,14 @@
   /* statement word reveal */
   var stEl=document.getElementById('statement-text');
   if(stEl){
-    var words='Мы превращаем сложные процедуры Домов юстиции в [понятный] [процесс]. От первой консультации — до документов [у] [вас] [на] [руках].';
+    var words='РњС‹ РїСЂРµРІСЂР°С‰Р°РµРј СЃР»РѕР¶РЅС‹Рµ РїСЂРѕС†РµРґСѓСЂС‹ Р”РѕРјРѕРІ СЋСЃС‚РёС†РёРё РІ [РїРѕРЅСЏС‚РЅС‹Р№] [РїСЂРѕС†РµСЃСЃ]. РћС‚ РїРµСЂРІРѕР№ РєРѕРЅСЃСѓР»СЊС‚Р°С†РёРё вЂ” РґРѕ РґРѕРєСѓРјРµРЅС‚РѕРІ [Сѓ] [РІР°СЃ] [РЅР°] [СЂСѓРєР°С…].';
     stEl.innerHTML=words.split(' ').map(function(w){
       var acc=w[0]==='[';
       return '<span class="'+(acc?'acc':'')+'">'+w.replace(/[\[\]]/g,'')+'</span>';
     }).join(' ');
     var stWords=stEl.querySelectorAll('span');
     var litStatement=function(){
-      stWords=stEl.querySelectorAll('span'); /* переспрашиваем на случай, если перевод страницы заменил узлы */
+      stWords=stEl.querySelectorAll('span'); /* РїРµСЂРµСЃРїСЂР°С€РёРІР°РµРј РЅР° СЃР»СѓС‡Р°Р№, РµСЃР»Рё РїРµСЂРµРІРѕРґ СЃС‚СЂР°РЅРёС†С‹ Р·Р°РјРµРЅРёР» СѓР·Р»С‹ */
       var r=stEl.getBoundingClientRect(), vh=innerHeight;
       var p=(vh*0.82-r.top)/(vh*0.55);
       p=Math.max(0,Math.min(1,p));
@@ -136,14 +136,14 @@
     else{
       litStatement();
       addEventListener('scroll',litStatement,{passive:true});
-      /* Google Translate может переписать содержимое этого блока после перевода —
-         на любое такое изменение пересчитываем анимацию заново, чтобы она не залипала */
+      /* Google Translate РјРѕР¶РµС‚ РїРµСЂРµРїРёСЃР°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ Р±Р»РѕРєР° РїРѕСЃР»Рµ РїРµСЂРµРІРѕРґР° вЂ”
+         РЅР° Р»СЋР±РѕРµ С‚Р°РєРѕРµ РёР·РјРµРЅРµРЅРёРµ РїРµСЂРµСЃС‡РёС‚С‹РІР°РµРј Р°РЅРёРјР°С†РёСЋ Р·Р°РЅРѕРІРѕ, С‡С‚РѕР±С‹ РѕРЅР° РЅРµ Р·Р°Р»РёРїР°Р»Р° */
       var stObs=new MutationObserver(function(){ litStatement(); });
       stObs.observe(stEl,{childList:true,subtree:true,characterData:true});
     }
   }
 
-  /* clients counter — растёт каждый день на случайные 3–15 */
+  /* clients counter вЂ” СЂР°СЃС‚С‘С‚ РєР°Р¶РґС‹Р№ РґРµРЅСЊ РЅР° СЃР»СѓС‡Р°Р№РЅС‹Рµ 3вЂ“15 */
   (function(){
     var el=document.getElementById('clientsCount');
     if(!el)return;
@@ -267,9 +267,9 @@
     });
   }
 
-  /* ===== формы заявки (основная + мини) ===== */
+  /* ===== С„РѕСЂРјС‹ Р·Р°СЏРІРєРё (РѕСЃРЅРѕРІРЅР°СЏ + РјРёРЅРё) ===== */
 
-  /* живые отзывы из Telegram (reviews.json) */
+  /* Р¶РёРІС‹Рµ РѕС‚Р·С‹РІС‹ РёР· Telegram (reviews.json) */
   (function(){
     var container = document.querySelector('.rv-masonry');
     if(!container) return;
@@ -279,29 +279,29 @@
         items.forEach(function(item){
           var fig = document.createElement('figure');
           fig.className = 'review reveal rv-reveal';
-          var initial = (item.author||'К').charAt(0).toUpperCase();
+          var initial = (item.author||'Рљ').charAt(0).toUpperCase();
 
           if(item.type === 'text'){
             fig.innerHTML =
               '<blockquote>'+item.text.replace(/</g,'&lt;')+'</blockquote>'+
               '<figcaption class="rv-foot"><span class="rv-ava">'+initial+'</span>'+
-              '<span><div class="rv-name">'+item.author+'</div><div class="rv-topic">Текстовый отзыв</div></span></figcaption>';
+              '<span><div class="rv-name">'+item.author+'</div><div class="rv-topic">РўРµРєСЃС‚РѕРІС‹Р№ РѕС‚Р·С‹РІ</div></span></figcaption>';
           } else if(item.type === 'audio'){
             var bars = ''; var barCount = 24;
             for(var i=0;i<barCount;i++){ bars += '<i style="height:'+(30+Math.round(Math.random()*70))+'%"></i>'; }
             fig.innerHTML =
-              '<div class="rv-audio"><button type="button" class="rv-play" aria-label="Воспроизвести"><i class="pchar">▶</i></button>'+
+              '<div class="rv-audio"><button type="button" class="rv-play" aria-label="Р’РѕСЃРїСЂРѕРёР·РІРµСЃС‚Рё"><i class="pchar">в–¶</i></button>'+
               '<div style="flex:1"><div class="rv-wave">'+bars+'</div><div class="rv-time">0:00</div></div></div>'+
               '<figcaption class="rv-foot"><span class="rv-ava">'+initial+'</span>'+
-              '<span><div class="rv-name">'+item.author+'</div><div class="rv-topic">Голосовой отзыв</div></span></figcaption>';
+              '<span><div class="rv-name">'+item.author+'</div><div class="rv-topic">Р“РѕР»РѕСЃРѕРІРѕР№ РѕС‚Р·С‹РІ</div></span></figcaption>';
             var audio = new Audio(item.url);
             var playBtn = fig.querySelector('.rv-play');
             var waveEls = fig.querySelectorAll('.rv-wave i');
             var timeEl = fig.querySelector('.rv-time');
             function fmt(s){ s=Math.floor(s||0); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); }
             playBtn.addEventListener('click', function(){
-              if(audio.paused){ audio.play(); playBtn.innerHTML='<i class="pchar">❚❚</i>'; }
-              else { audio.pause(); playBtn.innerHTML='<i class="pchar">▶</i>'; }
+              if(audio.paused){ audio.play(); playBtn.innerHTML='<i class="pchar">вќљвќљ</i>'; }
+              else { audio.pause(); playBtn.innerHTML='<i class="pchar">в–¶</i>'; }
             });
             audio.addEventListener('timeupdate', function(){
               var pct = audio.duration ? audio.currentTime/audio.duration : 0;
@@ -309,14 +309,14 @@
               waveEls.forEach(function(el,i){ el.classList.toggle('on', i<onCount); });
               timeEl.textContent = fmt(audio.currentTime)+' / '+fmt(audio.duration);
             });
-            audio.addEventListener('ended', function(){ playBtn.innerHTML='<i class="pchar">▶</i>'; });
+            audio.addEventListener('ended', function(){ playBtn.innerHTML='<i class="pchar">в–¶</i>'; });
           } else if(item.type === 'video'){
             fig.innerHTML =
               '<div class="rv-video-wrap"><video preload="metadata" src="'+item.url+'"></video>'+
-              '<button type="button" class="rv-video-play" aria-label="Воспроизвести видео"><i class="pchar">▶</i></button>'+
+              '<button type="button" class="rv-video-play" aria-label="Р’РѕСЃРїСЂРѕРёР·РІРµСЃС‚Рё РІРёРґРµРѕ"><i class="pchar">в–¶</i></button>'+
               '<span class="rv-video-dur"></span></div>'+
               '<figcaption class="rv-foot"><span class="rv-ava">'+initial+'</span>'+
-              '<span><div class="rv-name">'+item.author+'</div><div class="rv-topic">Видео-отзыв</div></span></figcaption>';
+              '<span><div class="rv-name">'+item.author+'</div><div class="rv-topic">Р’РёРґРµРѕ-РѕС‚Р·С‹РІ</div></span></figcaption>';
             var vid = fig.querySelector('video');
             var vBtn = fig.querySelector('.rv-video-play');
             var vDur = fig.querySelector('.rv-video-dur');
@@ -331,10 +331,10 @@
           container.prepend(fig);
         });
       })
-      .catch(function(){ /* если не удалось — просто остаются статичные отзывы */ });
+      .catch(function(){ /* РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ вЂ” РїСЂРѕСЃС‚Рѕ РѕСЃС‚Р°СЋС‚СЃСЏ СЃС‚Р°С‚РёС‡РЅС‹Рµ РѕС‚Р·С‹РІС‹ */ });
   })();
 
-  /* формы заявки (основная + мини) ===== */
+  /* С„РѕСЂРјС‹ Р·Р°СЏРІРєРё (РѕСЃРЅРѕРІРЅР°СЏ + РјРёРЅРё) ===== */
   function toast(msg){
     var vp=document.querySelector('.vpage:not([hidden])');
     var t=vp?vp.querySelector('#toast'):document.getElementById('toast');
@@ -356,42 +356,42 @@
       }else fb();
     });
   }
-  var CITY_OPTIONS=['Тбилиси','Батуми','Кутаиси','Удалённо','Другой город Грузии'];
+  var CITY_OPTIONS=['РўР±РёР»РёСЃРё','Р‘Р°С‚СѓРјРё','РљСѓС‚Р°РёСЃРё','РЈРґР°Р»С‘РЅРЅРѕ','Р”СЂСѓРіРѕР№ РіРѕСЂРѕРґ Р“СЂСѓР·РёРё'];
   var SERVICE_GROUPS=[
-    ['ВНЖ и статус',['ВНЖ по ИП/ООО без оборота','ВНЖ по ИП / ООО','ВНЖ по недвижимости','ВНЖ по воссоединению семьи','ВНЖ по учёбе','ВНЖ по трудоустройству','ВНЖ для IT-специалиста','ВНЖ по инвестициям','Визы для легализации (D1/D3/D5/D6/C5)','Продление ВНЖ','ПМЖ Грузии','Гражданство Грузии','Статус соотечественника','Прописка (ВНЖ/ПМЖ)']],
-    ['Бизнес и финансы',['Регистрация ИП — лично','Регистрация ИП — удалённо','Регистрация ООО — лично','Регистрация ООО — удалённо','Закрытие ИП','Закрытие ООО','ПТД — разрешение на работу','Переводчик на интервью ПТД','Банковский счёт','Настройка налогового кабинета','Бухгалтерия ИП','Бухгалтерия ООО','Регистрация ВЭД','Virtual Zone','Составление договоров']],
-    ['Недвижимость',['Оценка недвижимости','Сделки с недвижимостью']],
-    ['Документы и услуги',['Регистрация брака','Развод','Медицинская страховка','Переводы и нотариус','Диагностика юриста','Диагностика бухгалтера','Виза за рубеж (ЕС/США/UK/Япония/Канада)']],
-    ['Партнёры',['Аренда жилья (партнёр)','Инвестиции в недвижимость (партнёр)','Стать партнёром','Стать креатором']]
+    ['Р’РќР– Рё СЃС‚Р°С‚СѓСЃ',['Р’РќР– РїРѕ РРџ/РћРћРћ Р±РµР· РѕР±РѕСЂРѕС‚Р°','Р’РќР– РїРѕ РРџ / РћРћРћ','Р’РќР– РїРѕ РЅРµРґРІРёР¶РёРјРѕСЃС‚Рё','Р’РќР– РїРѕ РІРѕСЃСЃРѕРµРґРёРЅРµРЅРёСЋ СЃРµРјСЊРё','Р’РќР– РїРѕ СѓС‡С‘Р±Рµ','Р’РќР– РїРѕ С‚СЂСѓРґРѕСѓСЃС‚СЂРѕР№СЃС‚РІСѓ','Р’РќР– РґР»СЏ IT-СЃРїРµС†РёР°Р»РёСЃС‚Р°','Р’РќР– РїРѕ РёРЅРІРµСЃС‚РёС†РёСЏРј','Р’РёР·С‹ РґР»СЏ Р»РµРіР°Р»РёР·Р°С†РёРё (D1/D3/D5/D6/C5)','РџСЂРѕРґР»РµРЅРёРµ Р’РќР–','РџРњР– Р“СЂСѓР·РёРё','Р“СЂР°Р¶РґР°РЅСЃС‚РІРѕ Р“СЂСѓР·РёРё','РЎС‚Р°С‚СѓСЃ СЃРѕРѕС‚РµС‡РµСЃС‚РІРµРЅРЅРёРєР°','РџСЂРѕРїРёСЃРєР° (Р’РќР–/РџРњР–)']],
+    ['Р‘РёР·РЅРµСЃ Рё С„РёРЅР°РЅСЃС‹',['Р РµРіРёСЃС‚СЂР°С†РёСЏ РРџ вЂ” Р»РёС‡РЅРѕ','Р РµРіРёСЃС‚СЂР°С†РёСЏ РРџ вЂ” СѓРґР°Р»С‘РЅРЅРѕ','Р РµРіРёСЃС‚СЂР°С†РёСЏ РћРћРћ вЂ” Р»РёС‡РЅРѕ','Р РµРіРёСЃС‚СЂР°С†РёСЏ РћРћРћ вЂ” СѓРґР°Р»С‘РЅРЅРѕ','Р—Р°РєСЂС‹С‚РёРµ РРџ','Р—Р°РєСЂС‹С‚РёРµ РћРћРћ','РџРўР” вЂ” СЂР°Р·СЂРµС€РµРЅРёРµ РЅР° СЂР°Р±РѕС‚Сѓ','РџРµСЂРµРІРѕРґС‡РёРє РЅР° РёРЅС‚РµСЂРІСЊСЋ РџРўР”','Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡С‘С‚','РќР°СЃС‚СЂРѕР№РєР° РЅР°Р»РѕРіРѕРІРѕРіРѕ РєР°Р±РёРЅРµС‚Р°','Р‘СѓС…РіР°Р»С‚РµСЂРёСЏ РРџ','Р‘СѓС…РіР°Р»С‚РµСЂРёСЏ РћРћРћ','Р РµРіРёСЃС‚СЂР°С†РёСЏ Р’Р­Р”','Virtual Zone','РЎРѕСЃС‚Р°РІР»РµРЅРёРµ РґРѕРіРѕРІРѕСЂРѕРІ']],
+    ['РќРµРґРІРёР¶РёРјРѕСЃС‚СЊ',['РћС†РµРЅРєР° РЅРµРґРІРёР¶РёРјРѕСЃС‚Рё','РЎРґРµР»РєРё СЃ РЅРµРґРІРёР¶РёРјРѕСЃС‚СЊСЋ']],
+    ['Р”РѕРєСѓРјРµРЅС‚С‹ Рё СѓСЃР»СѓРіРё',['Р РµРіРёСЃС‚СЂР°С†РёСЏ Р±СЂР°РєР°','Р Р°Р·РІРѕРґ','РњРµРґРёС†РёРЅСЃРєР°СЏ СЃС‚СЂР°С…РѕРІРєР°','РџРµСЂРµРІРѕРґС‹ Рё РЅРѕС‚Р°СЂРёСѓСЃ','Р”РёР°РіРЅРѕСЃС‚РёРєР° СЋСЂРёСЃС‚Р°','Р”РёР°РіРЅРѕСЃС‚РёРєР° Р±СѓС…РіР°Р»С‚РµСЂР°','Р’РёР·Р° Р·Р° СЂСѓР±РµР¶ (Р•РЎ/РЎРЁРђ/UK/РЇРїРѕРЅРёСЏ/РљР°РЅР°РґР°)']],
+    ['РџР°СЂС‚РЅС‘СЂС‹',['РђСЂРµРЅРґР° Р¶РёР»СЊСЏ (РїР°СЂС‚РЅС‘СЂ)','РРЅРІРµСЃС‚РёС†РёРё РІ РЅРµРґРІРёР¶РёРјРѕСЃС‚СЊ (РїР°СЂС‚РЅС‘СЂ)','РЎС‚Р°С‚СЊ РїР°СЂС‚РЅС‘СЂРѕРј','РЎС‚Р°С‚СЊ РєСЂРµР°С‚РѕСЂРѕРј']]
   ];
   function buildServiceOptions(selectedVal){
-    var html='<option value="">Выбрать услугу</option>';
+    var html='<option value="">Р’С‹Р±СЂР°С‚СЊ СѓСЃР»СѓРіСѓ</option>';
     SERVICE_GROUPS.forEach(function(g){
       html+='<optgroup label="'+g[0]+'">';
       g[1].forEach(function(s){html+='<option'+(s===selectedVal?' selected':'')+'>'+s+'</option>';});
       html+='</optgroup>';
     });
-    html+='<option>Другое / пока не знаю</option>';
+    html+='<option>Р”СЂСѓРіРѕРµ / РїРѕРєР° РЅРµ Р·РЅР°СЋ</option>';
     return html;
   }
   var PAGE_SERVICE_MAP={
-    'p-vnzh-bez-oborota':'ВНЖ по ИП/ООО без оборота','p-vnzh-ip':'ВНЖ по ИП / ООО','p-vnzh-nedvizhimost':'ВНЖ по недвижимости',
-    'p-vnzh-semya':'ВНЖ по воссоединению семьи','p-vnzh-ucheba':'ВНЖ по учёбе','p-vnzh-rabota':'ВНЖ по трудоустройству',
-    'p-vnzh-it':'ВНЖ для IT-специалиста','p-vnzh-investicii':'ВНЖ по инвестициям','p-usluga-vizy-legalizaciya':'Визы для легализации (D1/D3/D5/D6/C5)',
-    'p-usluga-prodlenie-vnzh':'Продление ВНЖ','p-usluga-pmzh':'ПМЖ Грузии','p-usluga-grazhdanstvo':'Гражданство Грузии',
-    'p-usluga-sootechestvennik':'Статус соотечественника','p-usluga-propiska':'Прописка (ВНЖ/ПМЖ)',
-    'p-usluga-ip':'Регистрация ИП — лично','p-usluga-ip-udalenno':'Регистрация ИП — удалённо',
-    'p-usluga-ooo':'Регистрация ООО — лично','p-usluga-ooo-udalenno':'Регистрация ООО — удалённо',
-    'p-usluga-zakrytie-ip':'Закрытие ИП','p-usluga-zakrytie-ooo':'Закрытие ООО',
-    'p-usluga-ptd':'ПТД — разрешение на работу','p-usluga-perevodchik-ptd':'Переводчик на интервью ПТД',
-    'p-usluga-schet':'Банковский счёт','p-usluga-schet-biznes':'Банковский счёт','p-usluga-schet-docs':'Банковский счёт','p-usluga-schet-udalenno':'Банковский счёт',
-    'p-usluga-nalog-kabinet':'Настройка налогового кабинета','p-usluga-buhgalteriya':'Бухгалтерия ИП','p-usluga-buhgalteriya-ooo':'Бухгалтерия ООО',
-    'p-usluga-ved':'Регистрация ВЭД','p-usluga-virtualnaya-zona':'Virtual Zone','p-usluga-dogovory':'Составление договоров',
-    'p-usluga-ocenka-nedvizhimosti':'Оценка недвижимости','p-usluga-sdelki-nedvizhimost':'Сделки с недвижимостью',
-    'p-usluga-brak':'Регистрация брака','p-usluga-razvod':'Развод','p-usluga-strahovka':'Медицинская страховка',
-    'p-usluga-perevody':'Переводы и нотариус','p-usluga-konsultaciya':'Диагностика юриста','p-usluga-diagnostika-buhgalter':'Диагностика бухгалтера',
-    'p-usluga-viza-es':'Виза за рубеж (ЕС/США/UK/Япония/Канада)','p-usluga-viza-usa':'Виза за рубеж (ЕС/США/UK/Япония/Канада)',
-    'p-usluga-viza-uk':'Виза за рубеж (ЕС/США/UK/Япония/Канада)','p-usluga-viza-japan':'Виза за рубеж (ЕС/США/UK/Япония/Канада)','p-usluga-viza-canada':'Виза за рубеж (ЕС/США/UK/Япония/Канада)'
+    'p-vnzh-bez-oborota':'Р’РќР– РїРѕ РРџ/РћРћРћ Р±РµР· РѕР±РѕСЂРѕС‚Р°','p-vnzh-ip':'Р’РќР– РїРѕ РРџ / РћРћРћ','p-vnzh-nedvizhimost':'Р’РќР– РїРѕ РЅРµРґРІРёР¶РёРјРѕСЃС‚Рё',
+    'p-vnzh-semya':'Р’РќР– РїРѕ РІРѕСЃСЃРѕРµРґРёРЅРµРЅРёСЋ СЃРµРјСЊРё','p-vnzh-ucheba':'Р’РќР– РїРѕ СѓС‡С‘Р±Рµ','p-vnzh-rabota':'Р’РќР– РїРѕ С‚СЂСѓРґРѕСѓСЃС‚СЂРѕР№СЃС‚РІСѓ',
+    'p-vnzh-it':'Р’РќР– РґР»СЏ IT-СЃРїРµС†РёР°Р»РёСЃС‚Р°','p-vnzh-investicii':'Р’РќР– РїРѕ РёРЅРІРµСЃС‚РёС†РёСЏРј','p-usluga-vizy-legalizaciya':'Р’РёР·С‹ РґР»СЏ Р»РµРіР°Р»РёР·Р°С†РёРё (D1/D3/D5/D6/C5)',
+    'p-usluga-prodlenie-vnzh':'РџСЂРѕРґР»РµРЅРёРµ Р’РќР–','p-usluga-pmzh':'РџРњР– Р“СЂСѓР·РёРё','p-usluga-grazhdanstvo':'Р“СЂР°Р¶РґР°РЅСЃС‚РІРѕ Р“СЂСѓР·РёРё',
+    'p-usluga-sootechestvennik':'РЎС‚Р°С‚СѓСЃ СЃРѕРѕС‚РµС‡РµСЃС‚РІРµРЅРЅРёРєР°','p-usluga-propiska':'РџСЂРѕРїРёСЃРєР° (Р’РќР–/РџРњР–)',
+    'p-usluga-ip':'Р РµРіРёСЃС‚СЂР°С†РёСЏ РРџ вЂ” Р»РёС‡РЅРѕ','p-usluga-ip-udalenno':'Р РµРіРёСЃС‚СЂР°С†РёСЏ РРџ вЂ” СѓРґР°Р»С‘РЅРЅРѕ',
+    'p-usluga-ooo':'Р РµРіРёСЃС‚СЂР°С†РёСЏ РћРћРћ вЂ” Р»РёС‡РЅРѕ','p-usluga-ooo-udalenno':'Р РµРіРёСЃС‚СЂР°С†РёСЏ РћРћРћ вЂ” СѓРґР°Р»С‘РЅРЅРѕ',
+    'p-usluga-zakrytie-ip':'Р—Р°РєСЂС‹С‚РёРµ РРџ','p-usluga-zakrytie-ooo':'Р—Р°РєСЂС‹С‚РёРµ РћРћРћ',
+    'p-usluga-ptd':'РџРўР” вЂ” СЂР°Р·СЂРµС€РµРЅРёРµ РЅР° СЂР°Р±РѕС‚Сѓ','p-usluga-perevodchik-ptd':'РџРµСЂРµРІРѕРґС‡РёРє РЅР° РёРЅС‚РµСЂРІСЊСЋ РџРўР”',
+    'p-usluga-schet':'Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡С‘С‚','p-usluga-schet-biznes':'Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡С‘С‚','p-usluga-schet-docs':'Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡С‘С‚','p-usluga-schet-udalenno':'Р‘Р°РЅРєРѕРІСЃРєРёР№ СЃС‡С‘С‚',
+    'p-usluga-nalog-kabinet':'РќР°СЃС‚СЂРѕР№РєР° РЅР°Р»РѕРіРѕРІРѕРіРѕ РєР°Р±РёРЅРµС‚Р°','p-usluga-buhgalteriya':'Р‘СѓС…РіР°Р»С‚РµСЂРёСЏ РРџ','p-usluga-buhgalteriya-ooo':'Р‘СѓС…РіР°Р»С‚РµСЂРёСЏ РћРћРћ',
+    'p-usluga-ved':'Р РµРіРёСЃС‚СЂР°С†РёСЏ Р’Р­Р”','p-usluga-virtualnaya-zona':'Virtual Zone','p-usluga-dogovory':'РЎРѕСЃС‚Р°РІР»РµРЅРёРµ РґРѕРіРѕРІРѕСЂРѕРІ',
+    'p-usluga-ocenka-nedvizhimosti':'РћС†РµРЅРєР° РЅРµРґРІРёР¶РёРјРѕСЃС‚Рё','p-usluga-sdelki-nedvizhimost':'РЎРґРµР»РєРё СЃ РЅРµРґРІРёР¶РёРјРѕСЃС‚СЊСЋ',
+    'p-usluga-brak':'Р РµРіРёСЃС‚СЂР°С†РёСЏ Р±СЂР°РєР°','p-usluga-razvod':'Р Р°Р·РІРѕРґ','p-usluga-strahovka':'РњРµРґРёС†РёРЅСЃРєР°СЏ СЃС‚СЂР°С…РѕРІРєР°',
+    'p-usluga-perevody':'РџРµСЂРµРІРѕРґС‹ Рё РЅРѕС‚Р°СЂРёСѓСЃ','p-usluga-konsultaciya':'Р”РёР°РіРЅРѕСЃС‚РёРєР° СЋСЂРёСЃС‚Р°','p-usluga-diagnostika-buhgalter':'Р”РёР°РіРЅРѕСЃС‚РёРєР° Р±СѓС…РіР°Р»С‚РµСЂР°',
+    'p-usluga-viza-es':'Р’РёР·Р° Р·Р° СЂСѓР±РµР¶ (Р•РЎ/РЎРЁРђ/UK/РЇРїРѕРЅРёСЏ/РљР°РЅР°РґР°)','p-usluga-viza-usa':'Р’РёР·Р° Р·Р° СЂСѓР±РµР¶ (Р•РЎ/РЎРЁРђ/UK/РЇРїРѕРЅРёСЏ/РљР°РЅР°РґР°)',
+    'p-usluga-viza-uk':'Р’РёР·Р° Р·Р° СЂСѓР±РµР¶ (Р•РЎ/РЎРЁРђ/UK/РЇРїРѕРЅРёСЏ/РљР°РЅР°РґР°)','p-usluga-viza-japan':'Р’РёР·Р° Р·Р° СЂСѓР±РµР¶ (Р•РЎ/РЎРЁРђ/UK/РЇРїРѕРЅРёСЏ/РљР°РЅР°РґР°)','p-usluga-viza-canada':'Р’РёР·Р° Р·Р° СЂСѓР±РµР¶ (Р•РЎ/РЎРЁРђ/UK/РЇРїРѕРЅРёСЏ/РљР°РЅР°РґР°)'
   };
   function enhanceForm(form){
     if(form.dataset.enhanced)return; form.dataset.enhanced='1';
@@ -431,7 +431,7 @@
         svcField.className='field';
         var svcLbl=document.createElement('span');
         svcLbl.className='fl';
-        svcLbl.innerHTML='Услуга <span>(необязательно)</span>';
+        svcLbl.innerHTML='РЈСЃР»СѓРіР° <span>(РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)</span>';
         var svcSelect=document.createElement('select');
         svcSelect.className='f-service';
         svcSelect.innerHTML=buildServiceOptions(defaultSvc);
@@ -447,11 +447,11 @@
       msgField.className='field';
       var msgLbl=document.createElement('span');
       msgLbl.className='fl';
-      msgLbl.innerHTML='Комментарий по вашему кейсу <span>(по желанию)</span>';
+      msgLbl.innerHTML='РљРѕРјРјРµРЅС‚Р°СЂРёР№ РїРѕ РІР°С€РµРјСѓ РєРµР№СЃСѓ <span>(РїРѕ Р¶РµР»Р°РЅРёСЋ)</span>';
       var msgInput=document.createElement('input');
       msgInput.type='text';
       msgInput.className='f-msg';
-      msgInput.placeholder='Например: нужен ВНЖ, не знаю с чего начать';
+      msgInput.placeholder='РќР°РїСЂРёРјРµСЂ: РЅСѓР¶РµРЅ Р’РќР–, РЅРµ Р·РЅР°СЋ СЃ С‡РµРіРѕ РЅР°С‡Р°С‚СЊ';
       msgField.appendChild(msgLbl);
       msgField.appendChild(msgInput);
       var msgConsentLabel=msgConsentEl.closest('.consent')||msgConsentEl;
@@ -463,7 +463,7 @@
       wrap.style.cssText='display:inline-flex;align-items:stretch;gap:6px;width:100%;';
       var sel=document.createElement('select');
       sel.className='f-ctype';
-      sel.setAttribute('aria-label','Тип контакта');
+      sel.setAttribute('aria-label','РўРёРї РєРѕРЅС‚Р°РєС‚Р°');
       sel.style.cssText='width:60px !important;flex:0 0 60px;text-align:center;padding:10px 26px 10px 10px;background-position:right 8px center;background-size:13px';
       sel.innerHTML='<option value="+">+</option><option value="@">@</option>';
       contactEl.parentNode.insertBefore(wrap,contactEl);
@@ -484,7 +484,7 @@
       var citySel=document.createElement('select');
       citySel.className='f-city';
       var cityPlaceholder=document.createElement('option');
-      cityPlaceholder.value='';cityPlaceholder.textContent='Выберите город';
+      cityPlaceholder.value='';cityPlaceholder.textContent='Р’С‹Р±РµСЂРёС‚Рµ РіРѕСЂРѕРґ';
       citySel.appendChild(cityPlaceholder);
       CITY_OPTIONS.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=c;citySel.appendChild(o);});
       citySel.value='';
@@ -494,9 +494,9 @@
   }
   function pageTitle(form){
     var vp=form.closest('.vpage');
-    if(!vp||vp.id==='p-index')return 'Главная';
+    if(!vp||vp.id==='p-index')return 'Р“Р»Р°РІРЅР°СЏ';
     var h1=vp.querySelector('h1');
-    return h1?h1.textContent.trim():'Главная';
+    return h1?h1.textContent.trim():'Р“Р»Р°РІРЅР°СЏ';
   }
   function setupForm(form){
     enhanceForm(form);
@@ -512,32 +512,32 @@
         tgBtn=form.querySelector('.f-tg');
     function val(el){return el?(el.value||'').trim():'';}
     function buildMsg(){
-      var name=val(nameEl)||'клиент';
+      var name=val(nameEl)||'РєР»РёРµРЅС‚';
       var city=val(cityEl);
       var page=pageTitle(form);
-      var t='Здравствуйте! Меня зовут '+name+(city?(', проживаю в городе '+city):'')+'.';
-      t+='\nОставляю заявку со страницы «'+page+'» на сайте documenti.ge';
+      var t='Р—РґСЂР°РІСЃС‚РІСѓР№С‚Рµ! РњРµРЅСЏ Р·РѕРІСѓС‚ '+name+(city?(', РїСЂРѕР¶РёРІР°СЋ РІ РіРѕСЂРѕРґРµ '+city):'')+'.';
+      t+='\nРћСЃС‚Р°РІР»СЏСЋ Р·Р°СЏРІРєСѓ СЃРѕ СЃС‚СЂР°РЅРёС†С‹ В«'+page+'В» РЅР° СЃР°Р№С‚Рµ documenti.ge';
       var s=val(serviceEl);
-      t+=s?(' — нужна помощь с услугой «'+s+'».'):'.';
-      var m=val(msgEl); if(m)t+='\nМой кейс: '+m;
+      t+=s?(' вЂ” РЅСѓР¶РЅР° РїРѕРјРѕС‰СЊ СЃ СѓСЃР»СѓРіРѕР№ В«'+s+'В».'):'.';
+      var m=val(msgEl); if(m)t+='\nРњРѕР№ РєРµР№СЃ: '+m;
       if(form.classList.contains('partner-form')){
         var checkinEl=form.querySelector('.f-checkin'), checkoutEl=form.querySelector('.f-checkout'), guestsEl=form.querySelector('.f-guests');
-        if(checkinEl||checkoutEl)t+='\nДаты проживания: '+(val(checkinEl)||'не указано')+' — '+(val(checkoutEl)||'не указано');
-        if(guestsEl)t+='\nКол-во проживающих: '+(val(guestsEl)||'не указано');
+        if(checkinEl||checkoutEl)t+='\nР”Р°С‚С‹ РїСЂРѕР¶РёРІР°РЅРёСЏ: '+(val(checkinEl)||'РЅРµ СѓРєР°Р·Р°РЅРѕ')+' вЂ” '+(val(checkoutEl)||'РЅРµ СѓРєР°Р·Р°РЅРѕ');
+        if(guestsEl)t+='\nРљРѕР»-РІРѕ РїСЂРѕР¶РёРІР°СЋС‰РёС…: '+(val(guestsEl)||'РЅРµ СѓРєР°Р·Р°РЅРѕ');
         var budgetEl=form.querySelector('.f-budget'), formatEl=form.querySelector('.f-format'), vnzhEl=form.querySelector('.f-vnzh');
-        if(budgetEl)t+='\nБюджет: '+(val(budgetEl)||'не указан');
-        if(formatEl)t+='\nФормат: '+(val(formatEl)||'не указан');
-        if(vnzhEl)t+='\nИнтересует ВНЖ: '+(val(vnzhEl)||'не указано');
+        if(budgetEl)t+='\nР‘СЋРґР¶РµС‚: '+(val(budgetEl)||'РЅРµ СѓРєР°Р·Р°РЅ');
+        if(formatEl)t+='\nР¤РѕСЂРјР°С‚: '+(val(formatEl)||'РЅРµ СѓРєР°Р·Р°РЅ');
+        if(vnzhEl)t+='\nРРЅС‚РµСЂРµСЃСѓРµС‚ Р’РќР–: '+(val(vnzhEl)||'РЅРµ СѓРєР°Р·Р°РЅРѕ');
         var sferaEl=form.querySelector('.f-sfera');
-        if(sferaEl)t+='\nСфера деятельности: '+(val(sferaEl)||'не указана');
+        if(sferaEl)t+='\nРЎС„РµСЂР° РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё: '+(val(sferaEl)||'РЅРµ СѓРєР°Р·Р°РЅР°');
         var platformEl=form.querySelector('.f-platform'), profileEl=form.querySelector('.f-profile');
-        if(platformEl)t+='\nПлатформа: '+(val(platformEl)||'не указана');
-        if(profileEl)t+='\nСсылка на профиль: '+(val(profileEl)||'не указана');
+        if(platformEl)t+='\nРџР»Р°С‚С„РѕСЂРјР°: '+(val(platformEl)||'РЅРµ СѓРєР°Р·Р°РЅР°');
+        if(profileEl)t+='\nРЎСЃС‹Р»РєР° РЅР° РїСЂРѕС„РёР»СЊ: '+(val(profileEl)||'РЅРµ СѓРєР°Р·Р°РЅР°');
       }
       var ctype=ctypeEl?ctypeEl.value:'+';
       var contact=val(contactEl);
       var prefixed=(ctype==='@')?(contact&&contact.charAt(0)!=='@'?('@'+contact):contact):(contact&&contact.charAt(0)!=='+'?('+'+contact):contact);
-      t+='\nКонтакт для связи: '+prefixed+'.';
+      t+='\nРљРѕРЅС‚Р°РєС‚ РґР»СЏ СЃРІСЏР·Рё: '+prefixed+'.';
       return t;
     }
     function validateContact(){
@@ -547,13 +547,13 @@
       if(ctype==='+'){
         if(!/^[0-9]{7,15}$/.test(v)){
           if(f)f.classList.add('err');
-          if(errEl)errEl.textContent='Введите номер телефона цифрами, без пробелов';
+          if(errEl)errEl.textContent='Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° С†РёС„СЂР°РјРё, Р±РµР· РїСЂРѕР±РµР»РѕРІ';
           return false;
         }
       }else{
         if(!/^[A-Za-z][A-Za-z0-9_]{4,31}$/.test(v)){
           if(f)f.classList.add('err');
-          if(errEl)errEl.textContent='Введите корректный Telegram-юзернейм';
+          if(errEl)errEl.textContent='Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Р№ Telegram-СЋР·РµСЂРЅРµР№Рј';
           return false;
         }
       }
@@ -570,12 +570,12 @@
       var consentLab=consentEl?consentEl.closest('.consent'):null;
       if(consentEl && !consentEl.checked){
         if(consentLab)consentLab.classList.add('err');
-        if(errEl)errEl.textContent='Подтвердите согласие на обработку персональных данных.';
+        if(errEl)errEl.textContent='РџРѕРґС‚РІРµСЂРґРёС‚Рµ СЃРѕРіР»Р°СЃРёРµ РЅР° РѕР±СЂР°Р±РѕС‚РєСѓ РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С….';
         return false;
       }
       if(consentLab)consentLab.classList.remove('err');
       if(ok && errEl)errEl.textContent='';
-      else if(!ok && errEl && !errEl.textContent)errEl.textContent='Заполните, пожалуйста, имя и контакт.';
+      else if(!ok && errEl && !errEl.textContent)errEl.textContent='Р—Р°РїРѕР»РЅРёС‚Рµ, РїРѕР¶Р°Р»СѓР№СЃС‚Р°, РёРјСЏ Рё РєРѕРЅС‚Р°РєС‚.';
       return ok;
     }
     [nameEl,contactEl].forEach(function(el){
@@ -594,18 +594,18 @@
       if(!leadType)return;
       var payload={type:leadType,name:val(nameEl),contact:val(contactEl)};
       var d1=form.querySelector('.f-checkin'),d2=form.querySelector('.f-checkout'),g=form.querySelector('.f-guests');
-      if(d1)payload['Заезд']=val(d1);
-      if(d2)payload['Выселение']=val(d2);
-      if(g)payload['Гостей']=val(g);
+      if(d1)payload['Р—Р°РµР·Рґ']=val(d1);
+      if(d2)payload['Р’С‹СЃРµР»РµРЅРёРµ']=val(d2);
+      if(g)payload['Р“РѕСЃС‚РµР№']=val(g);
       var bu=form.querySelector('.f-budget'),fo=form.querySelector('.f-format'),vn=form.querySelector('.f-vnzh');
-      if(bu)payload['Бюджет']=val(bu);
-      if(fo)payload['Формат']=val(fo);
-      if(vn)payload['ВНЖ']=val(vn);
-      var sf=form.querySelector('.f-sfera'); if(sf)payload['Сфера']=val(sf);
+      if(bu)payload['Р‘СЋРґР¶РµС‚']=val(bu);
+      if(fo)payload['Р¤РѕСЂРјР°С‚']=val(fo);
+      if(vn)payload['Р’РќР–']=val(vn);
+      var sf=form.querySelector('.f-sfera'); if(sf)payload['РЎС„РµСЂР°']=val(sf);
       var pl=form.querySelector('.f-platform'),pr=form.querySelector('.f-profile');
-      if(pl)payload['Платформа']=val(pl);
-      if(pr)payload['Профиль']=val(pr);
-      var mm=form.querySelector('.f-msg'); if(mm)payload['Комментарий']=val(mm);
+      if(pl)payload['РџР»Р°С‚С„РѕСЂРјР°']=val(pl);
+      if(pr)payload['РџСЂРѕС„РёР»СЊ']=val(pr);
+      var mm=form.querySelector('.f-msg'); if(mm)payload['РљРѕРјРјРµРЅС‚Р°СЂРёР№']=val(mm);
       fetch('https://script.google.com/macros/s/AKfycbw_bYectE6-J3D7kuDKLemqqEBxlCndg-T_kdhl3hwPsoB74w_TtcLo7MeYFSuqpA3Raw/exec',{
         method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)
       }).catch(function(){});
@@ -613,19 +613,19 @@
     if(waBtn)waBtn.addEventListener('click',function(){
       if(!validate())return;
       window.open('https://wa.me/995591339448?text='+encodeURIComponent(buildMsg()),'_blank');
-      toast('Открываем WhatsApp с вашей заявкой…');
+      toast('РћС‚РєСЂС‹РІР°РµРј WhatsApp СЃ РІР°С€РµР№ Р·Р°СЏРІРєРѕР№вЂ¦');
       submitLeadTable();
     });
     if(tgBtn)tgBtn.addEventListener('click',function(){
       if(!validate())return;
       window.open('https://t.me/documenti_ge?text='+encodeURIComponent(buildMsg()),'_blank');
-      toast('Открываем Telegram с вашей заявкой…');
+      toast('РћС‚РєСЂС‹РІР°РµРј Telegram СЃ РІР°С€РµР№ Р·Р°СЏРІРєРѕР№вЂ¦');
       submitLeadTable();
     });
   }
   document.querySelectorAll('.lead-form,.mini-form').forEach(setupForm);
 
-  /* карусель популярных услуг — подсветка описания при наведении */
+  /* РєР°СЂСѓСЃРµР»СЊ РїРѕРїСѓР»СЏСЂРЅС‹С… СѓСЃР»СѓРі вЂ” РїРѕРґСЃРІРµС‚РєР° РѕРїРёСЃР°РЅРёСЏ РїСЂРё РЅР°РІРµРґРµРЅРёРё */
   var uwDesc=document.getElementById('uwDesc');
   var uwDefaultText=uwDesc?uwDesc.textContent:'';
   document.querySelectorAll('.uw-item').forEach(function(item){
@@ -640,7 +640,7 @@
     });
   });
 
-  /* "Оставить заявку" — scroll to the form on the CURRENT page (ids repeat per page, so native anchor jump would always land on the very first one in the document) */
+  /* "РћСЃС‚Р°РІРёС‚СЊ Р·Р°СЏРІРєСѓ" вЂ” scroll to the form on the CURRENT page (ids repeat per page, so native anchor jump would always land on the very first one in the document) */
   document.querySelectorAll('a[href="#zayavka"]').forEach(function(a){
     a.addEventListener('click',function(e){
       e.preventDefault();
@@ -650,7 +650,7 @@
     });
   });
 
-  /* ===== форма отзыва ===== */
+  /* ===== С„РѕСЂРјР° РѕС‚Р·С‹РІР° ===== */
   document.querySelectorAll('.review-form').forEach(function(form){
     var stars=form.querySelector('.rf-stars'), rating=5;
     if(stars){
@@ -680,7 +680,7 @@
         if(!el)return; var f=el.closest('.field');
         if(!el.value.trim()){if(f)f.classList.add('err');ok=false;}else if(f)f.classList.remove('err');
       });
-      if(!ok){if(errEl)errEl.textContent='Заполните, пожалуйста, имя и текст отзыва.';return;}
+      if(!ok){if(errEl)errEl.textContent='Р—Р°РїРѕР»РЅРёС‚Рµ, РїРѕР¶Р°Р»СѓР№СЃС‚Р°, РёРјСЏ Рё С‚РµРєСЃС‚ РѕС‚Р·С‹РІР°.';return;}
       if(errEl)errEl.textContent='';
       sendEl.disabled=true;
       fetch('https://reviews.documenti.ge/api/review',{
@@ -689,20 +689,20 @@
       }).then(function(r){return r.json();}).then(function(res){
         sendEl.disabled=false;
         if(res && res.ok){
-          toast('Спасибо! Отзыв принят, с вами было приятно иметь дело!');
+          toast('РЎРїР°СЃРёР±Рѕ! РћС‚Р·С‹РІ РїСЂРёРЅСЏС‚, СЃ РІР°РјРё Р±С‹Р»Рѕ РїСЂРёСЏС‚РЅРѕ РёРјРµС‚СЊ РґРµР»Рѕ!');
           form.reset();
         }else{
-          if(errEl)errEl.textContent='Не получилось отправить, попробуйте ещё раз.';
+          if(errEl)errEl.textContent='РќРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ РѕС‚РїСЂР°РІРёС‚СЊ, РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰С‘ СЂР°Р·.';
         }
       }).catch(function(){
         sendEl.disabled=false;
-        if(errEl)errEl.textContent='Не получилось отправить — проверьте связь и попробуйте ещё раз.';
+        if(errEl)errEl.textContent='РќРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ РѕС‚РїСЂР°РІРёС‚СЊ вЂ” РїСЂРѕРІРµСЂСЊС‚Рµ СЃРІСЏР·СЊ Рё РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰С‘ СЂР°Р·.';
       });
     });
   });
 })();
 
-/* отзывы — показать все по кнопке (видно ~10, остальное по клику) */
+/* РѕС‚Р·С‹РІС‹ вЂ” РїРѕРєР°Р·Р°С‚СЊ РІСЃРµ РїРѕ РєРЅРѕРїРєРµ (РІРёРґРЅРѕ ~10, РѕСЃС‚Р°Р»СЊРЅРѕРµ РїРѕ РєР»РёРєСѓ) */
 (function(){
   var grid=document.querySelector('.rv-all');
   if(!grid)return;
@@ -715,7 +715,7 @@
   var btn=document.createElement('button');
   btn.type='button';
   btn.className='btn btn-grad';
-  btn.textContent='Показать все отзывы ('+cards.length+')';
+  btn.textContent='РџРѕРєР°Р·Р°С‚СЊ РІСЃРµ РѕС‚Р·С‹РІС‹ ('+cards.length+')';
   wrap.appendChild(btn);
   grid.parentNode.insertBefore(wrap,grid.nextSibling);
   btn.addEventListener('click',function(){
@@ -724,7 +724,7 @@
   });
 })();
 
-/* статьи — сортировка списка */
+/* СЃС‚Р°С‚СЊРё вЂ” СЃРѕСЂС‚РёСЂРѕРІРєР° СЃРїРёСЃРєР° */
 (function(){
   var bar=document.querySelector('.sort-bar');
   var grid=document.querySelector('.art-grid');
