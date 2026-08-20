@@ -1,9 +1,9 @@
-/* ============ DOCUMENTI.GE — brand ============ */
+/* ============ DOCUMENTI.GE вЂ” brand ============ */
 
-/* ── ШРИФТ БРЕНДА ──────────────────────────────────────────────
-   GILROY — коммерческий шрифт, его нет в Google Fonts.
-   Когда будут файлы Gilroy (.woff2) — положите рядом с этим
-   файлом и раскомментируйте блок ниже, шрифт подхватится сам. */
+/* в”Ђв”Ђ РЁР РР¤Рў Р‘Р Р•РќР”Рђ в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
+   GILROY вЂ” РєРѕРјРјРµСЂС‡РµСЃРєРёР№ С€СЂРёС„С‚, РµРіРѕ РЅРµС‚ РІ Google Fonts.
+   РљРѕРіРґР° Р±СѓРґСѓС‚ С„Р°Р№Р»С‹ Gilroy (.woff2) вЂ” РїРѕР»РѕР¶РёС‚Рµ СЂСЏРґРѕРј СЃ СЌС‚РёРј
+   С„Р°Р№Р»РѕРј Рё СЂР°СЃРєРѕРјРјРµРЅС‚РёСЂСѓР№С‚Рµ Р±Р»РѕРє РЅРёР¶Рµ, С€СЂРёС„С‚ РїРѕРґС…РІР°С‚РёС‚СЃСЏ СЃР°Рј. */
 /*
 @font-face{font-family:'Gilroy';src:url('Gilroy-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:'Gilroy';src:url('Gilroy-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
@@ -40,7 +40,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 ::selection{background:var(--red);color:#fff}
 section[id]{scroll-margin-top:88px}
 
-/* важные слова — красивый рукописный курсив, фирменный красный */
+/* РІР°Р¶РЅС‹Рµ СЃР»РѕРІР° вЂ” РєСЂР°СЃРёРІС‹Р№ СЂСѓРєРѕРїРёСЃРЅС‹Р№ РєСѓСЂСЃРёРІ, С„РёСЂРјРµРЅРЅС‹Р№ РєСЂР°СЃРЅС‹Р№ */
 em,.i{font-family:var(--hand);font-style:normal;font-weight:700;color:var(--red);
   font-size:1.18em;line-height:.9;letter-spacing:.005em}
 
@@ -108,11 +108,10 @@ h2.title{font-size:clamp(33px,4.6vw,56px);font-weight:800;line-height:1.12;lette
 .lang-btn.active{background:var(--red);color:#fff}
 @media(max-width:920px){.lang-switch{display:none}}
 .lang-switch-mobile{display:flex!important;margin:18px auto 0;justify-content:center}
-/* прячем стандартный тулбар Google Translate — используем свои кнопки RU/EN/KA */
+/* РїСЂСЏС‡РµРј СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ С‚СѓР»Р±Р°СЂ Google Translate вЂ” РёСЃРїРѕР»СЊР·СѓРµРј СЃРІРѕРё РєРЅРѕРїРєРё RU/EN/KA */
 .goog-te-banner-frame,.goog-te-gadget-icon{display:none!important}
 body{top:0!important;position:static!important}
 .skiptranslate{display:none!important}
-#google_translate_element{display:none!important}
 .burger{display:none;width:42px;height:42px;border-radius:999px;border:1px solid var(--line-2);
   flex-direction:column;align-items:center;justify-content:center;gap:5px;background:rgba(255,255,255,.6)}
 .burger span{width:16px;height:1.8px;background:var(--text);border-radius:2px;transition:.3s}
@@ -152,7 +151,7 @@ body{top:0!important;position:static!important}
 .hero-form-col{animation:heroIn .9s var(--ease) .3s backwards}
 @keyframes heroIn{to{opacity:1;transform:none}}
 
-/* lead form — чистая премиальная форма */
+/* lead form вЂ” С‡РёСЃС‚Р°СЏ РїСЂРµРјРёР°Р»СЊРЅР°СЏ С„РѕСЂРјР° */
 .lead-form{
   position:relative;
   background:linear-gradient(180deg,#FFFEFA,#FFFCEF);
@@ -161,8 +160,8 @@ body{top:0!important;position:static!important}
   padding:21px 22px 19px;
   box-shadow:0 20px 44px -26px rgba(20,18,8,.42),0 0 30px -8px rgba(213,38,43,.34);
 }
-/* мягкое свечение, плавно идущее по контуру формы */
-.lf-orbit{position:absolute;inset:-5px;z-index:-2;pointer-events:none}
+/* РјСЏРіРєРѕРµ СЃРІРµС‡РµРЅРёРµ, РїР»Р°РІРЅРѕ РёРґСѓС‰РµРµ РїРѕ РєРѕРЅС‚СѓСЂСѓ С„РѕСЂРјС‹ */
+.lf-orbit{position:absolute;inset:-5px;z-index:-2;pointer-events:none;overflow:hidden;border-radius:22.5px}
 .lf-orbit i{
   position:absolute;top:0;left:0;
   width:300px;height:300px;border-radius:50%;
@@ -178,7 +177,7 @@ body{top:0!important;position:static!important}
   50%{top:100%;left:100%}
   75%{top:100%;left:0%}
 }
-/* живая светящаяся рамка с переливом цвета */
+/* Р¶РёРІР°СЏ СЃРІРµС‚СЏС‰Р°СЏСЃСЏ СЂР°РјРєР° СЃ РїРµСЂРµР»РёРІРѕРј С†РІРµС‚Р° */
 .lead-form::before{
   content:"";position:absolute;inset:-2.5px;border-radius:22.5px;z-index:-1;
   border:2px solid #E8332E;pointer-events:none;
@@ -218,19 +217,19 @@ body{top:0!important;position:static!important}
 .f-err:not(:empty){min-height:17px;margin:5px 0 0}
 .lf-actions{display:flex;gap:10px;margin-top:10px}
 .lf-actions .btn{flex:1;justify-content:center;min-width:0;padding:15px 18px;font-size:15.5px}
-/* строка времени ответа */
+/* СЃС‚СЂРѕРєР° РІСЂРµРјРµРЅРё РѕС‚РІРµС‚Р° */
 .lf-resp{display:flex;align-items:center;justify-content:center;gap:6px;
   margin-top:11px;font-size:12.5px;font-weight:600;color:var(--text-2)}
 .lf-resp svg{flex:none}
 .lf-resp b{color:var(--text);font-weight:800}
-/* мини-гарантия */
+/* РјРёРЅРё-РіР°СЂР°РЅС‚РёСЏ */
 .lf-guarantee{display:flex;align-items:center;gap:10px;margin-top:12px;
   padding:10px 12px;border-radius:12px;
   background:rgba(213,38,43,.055);border:1px solid rgba(213,38,43,.16)}
 .lf-guarantee svg{flex:none}
 .lf-guarantee p{font-size:11.8px;line-height:1.45;color:var(--text-2);font-weight:500}
 .lf-guarantee b{color:var(--red-2);font-weight:800}
-/* «живой человек» — менеджер */
+/* В«Р¶РёРІРѕР№ С‡РµР»РѕРІРµРєВ» вЂ” РјРµРЅРµРґР¶РµСЂ */
 .lf-manager{display:flex;align-items:center;gap:11px;
   margin:14px 0 13px;padding:9px 11px;border-radius:13px;
   background:#FCF6E2;border:1px solid var(--line)}
@@ -242,7 +241,7 @@ body{top:0!important;position:static!important}
 .lf-mgr-txt b{display:block;font-size:10.5px;font-weight:800;letter-spacing:.05em;
   text-transform:uppercase;color:#1EA855;margin-bottom:2px}
 
-/* mini CTA — компактная форма-напоминание */
+/* mini CTA вЂ” РєРѕРјРїР°РєС‚РЅР°СЏ С„РѕСЂРјР°-РЅР°РїРѕРјРёРЅР°РЅРёРµ */
 .mini-cta{padding:8px 0 96px}
 .mini-card{display:flex;align-items:center;gap:34px;flex-wrap:wrap;position:relative;overflow:hidden;
   background:linear-gradient(180deg,#FFFEFA,#FFFCEF);border:1px solid var(--line);
@@ -326,7 +325,7 @@ body{top:0!important;position:static!important}
 .bcard.feature .tags{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
 .bcard.feature .tags span{font-size:12px;font-weight:600;color:var(--text-2);padding:6px 12px;border-radius:999px;
   border:1px solid var(--line);background:var(--card-2)}
-/* главные услуги — красным */
+/* РіР»Р°РІРЅС‹Рµ СѓСЃР»СѓРіРё вЂ” РєСЂР°СЃРЅС‹Рј */
 .bcard.hot{background:var(--grad);border-color:transparent;color:#fff}
 .bcard.hot::before{background:radial-gradient(420px circle at var(--mx) var(--my),rgba(255,255,255,.18),transparent 62%)}
 .bcard.hot:hover{border-color:transparent}
@@ -445,7 +444,7 @@ body{top:0!important;position:static!important}
 .chan .cl{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
 .chan .cv{font-size:17px;font-weight:800;letter-spacing:-.02em;margin-top:8px}
 .chan .ca{font-size:13px;color:var(--text-2);margin-top:4px;font-weight:500}
-/* фирменные цвета мессенджеров */
+/* С„РёСЂРјРµРЅРЅС‹Рµ С†РІРµС‚Р° РјРµСЃСЃРµРЅРґР¶РµСЂРѕРІ */
 .chan-tg{background:linear-gradient(135deg,#3DBDF0,#2092D2);border-color:transparent;
   box-shadow:0 14px 32px -14px rgba(33,146,210,.6)}
 .chan-wa{background:linear-gradient(135deg,#2BD46F,#1EA855);border-color:transparent;
@@ -520,10 +519,10 @@ footer{background:#0E0D0A;color:#E7E5D2;padding:62px 0 40px;position:relative;z-
   .stat-grid,.bento,.bcard.feature,.s2,.s3,.steps,.channels{grid-template-columns:1fr;grid-column:auto}
   .statement{padding:84px 20px}
   .rv-masonry{column-count:1}
-  /* шапка — прячем кнопку, чтобы не вылезала за экран */
+  /* С€Р°РїРєР° вЂ” РїСЂСЏС‡РµРј РєРЅРѕРїРєСѓ, С‡С‚РѕР±С‹ РЅРµ РІС‹Р»РµР·Р°Р»Р° Р·Р° СЌРєСЂР°РЅ */
   .nav-in{padding:0 20px}
   .nav-r .btn-grad{display:none}
-  /* hero — всё по центру */
+  /* hero вЂ” РІСЃС‘ РїРѕ С†РµРЅС‚СЂСѓ */
   .hero-text{text-align:center}
   .hero h1{font-size:clamp(24px,7.4vw,32px)}
   .hero h1 em{font-size:1.18em}
@@ -532,7 +531,7 @@ footer{background:#0E0D0A;color:#E7E5D2;padding:62px 0 40px;position:relative;z-
   .hero-actions .btn{flex:1;min-width:0;padding:11px 12px;font-size:13px}
   .hero-chips{justify-content:center;gap:7px}
   .hchip{font-size:11px;padding:6px 10px}
-  /* форма — компактно, помещается без прокрутки */
+  /* С„РѕСЂРјР° вЂ” РєРѕРјРїР°РєС‚РЅРѕ, РїРѕРјРµС‰Р°РµС‚СЃСЏ Р±РµР· РїСЂРѕРєСЂСѓС‚РєРё */
   .lead-form{padding:16px 15px 15px}
   .lf-head{gap:10px}
   .lf-title{font-size:17.5px}
@@ -550,7 +549,7 @@ footer{background:#0E0D0A;color:#E7E5D2;padding:62px 0 40px;position:relative;z-
   .mini-card{padding:24px 20px;gap:18px}
 }
 
-/* ===================== МНОГОСТРАНИЧНОСТЬ ===================== */
+/* ===================== РњРќРћР“РћРЎРўР РђРќРР§РќРћРЎРўР¬ ===================== */
 .nav-links a.active{color:var(--red)}
 
 .page-head{padding:142px 0 46px;position:relative}
@@ -611,7 +610,7 @@ footer{background:#0E0D0A;color:#E7E5D2;padding:62px 0 40px;position:relative;z-
 .svc-preview{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
 .svc-more{margin-top:28px;text-align:center}
 
-/* статьи — список */
+/* СЃС‚Р°С‚СЊРё вЂ” СЃРїРёСЃРѕРє */
 .art-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:34px}
 .art-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);
   background:var(--card);box-shadow:var(--sh);padding:30px;text-decoration:none;color:inherit;
@@ -623,7 +622,7 @@ footer{background:#0E0D0A;color:#E7E5D2;padding:62px 0 40px;position:relative;z-
 .art-card p{margin-top:10px;color:var(--text-2);font-size:14px;line-height:1.55;font-weight:500;flex:1}
 .art-card .art-go{margin-top:18px;font-size:14px;font-weight:800;color:var(--red)}
 
-/* статья — страница */
+/* СЃС‚Р°С‚СЊСЏ вЂ” СЃС‚СЂР°РЅРёС†Р° */
 .article{padding:6px 0 24px}
 .article .wrap{max-width:790px}
 .art-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
@@ -641,7 +640,7 @@ footer{background:#0E0D0A;color:#E7E5D2;padding:62px 0 40px;position:relative;z-
   border-radius:12px;padding:18px 22px;font-size:15px;line-height:1.62;color:var(--text-2);font-weight:500}
 .art-callout b{color:var(--text)}
 
-/* форма отзыва */
+/* С„РѕСЂРјР° РѕС‚Р·С‹РІР° */
 .review-form{margin-top:8px;max-width:680px;background:var(--card);border:1px solid var(--line);
   border-radius:var(--r);box-shadow:var(--sh);padding:32px}
 .review-form .rf-head{font-size:22px;font-weight:800;letter-spacing:-.025em}
@@ -668,7 +667,7 @@ footer{background:#0E0D0A;color:#E7E5D2;padding:62px 0 40px;position:relative;z-
   .page-head{padding:118px 0 34px}
 }
 
-/* ===== группы услуг ===== */
+/* ===== РіСЂСѓРїРїС‹ СѓСЃР»СѓРі ===== */
 .svc-group{padding:56px 0}
 .svc-group.svc-first{padding-top:132px}
 .svc-group.tint{background:var(--card-2)}
@@ -689,7 +688,7 @@ footer{background:#0E0D0A;color:#E7E5D2;padding:62px 0 40px;position:relative;z-
 @media(max-width:600px){.svc-grid{grid-template-columns:1fr}
   .svc-group{padding:42px 0}.svc-group.svc-first{padding-top:108px}}
 
-/* ===== основания ВНЖ — кликабельные карточки ===== */
+/* ===== РѕСЃРЅРѕРІР°РЅРёСЏ Р’РќР– вЂ” РєР»РёРєР°Р±РµР»СЊРЅС‹Рµ РєР°СЂС‚РѕС‡РєРё ===== */
 a.gcard{display:block;text-decoration:none;color:inherit}
 a.gcard.vnzh-item:hover{border-color:rgba(213,38,43,.45);
   transform:translateY(-4px);box-shadow:var(--sh-h)}
@@ -697,27 +696,27 @@ a.gcard.vnzh-item:hover{border-color:rgba(213,38,43,.45);
   font-size:13px;font-weight:700;color:var(--red);transition:gap .25s var(--ease)}
 a.gcard.vnzh-item:hover .g-more{gap:11px}
 
-/* отзывы — скрытые до нажатия кнопки */
+/* РѕС‚Р·С‹РІС‹ вЂ” СЃРєСЂС‹С‚С‹Рµ РґРѕ РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё */
 .review.rv-collapsed{display:none}
 
-/* ===== кнопка «назад» ===== */
+/* ===== РєРЅРѕРїРєР° В«РЅР°Р·Р°РґВ» ===== */
 .back-link{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;
   color:var(--text-2);background:var(--card-2);border:1px solid var(--line-2);
   padding:7px 15px;border-radius:999px;margin-bottom:18px;text-decoration:none;
   transition:color .2s,border-color .2s,background .2s}
-.back-link::before{content:"←";font-size:15px;transition:transform .2s var(--ease)}
+.back-link::before{content:"в†ђ";font-size:15px;transition:transform .2s var(--ease)}
 .back-link:hover{color:var(--red);border-color:rgba(213,38,43,.4);background:#fff}
 .back-link:hover::before{transform:translateX(-3px)}
 
-/* ===== счётчик ВНЖ с названием основания ===== */
+/* ===== СЃС‡С‘С‚С‡РёРє Р’РќР– СЃ РЅР°Р·РІР°РЅРёРµРј РѕСЃРЅРѕРІР°РЅРёСЏ ===== */
 .vnzh-meter{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-top:28px}
 .vnzh-meter .counter{margin-top:0}
 .vnzh-name{font-size:20px;font-weight:800;letter-spacing:-.025em;color:var(--text);line-height:1.2}
 
-/* ===== флагманская карточка без тегов ===== */
+/* ===== С„Р»Р°РіРјР°РЅСЃРєР°СЏ РєР°СЂС‚РѕС‡РєР° Р±РµР· С‚РµРіРѕРІ ===== */
 .svc-grid .bcard.feature p{max-width:560px}
 
-/* ===== статьи: огонёк, даты, сортировка ===== */
+/* ===== СЃС‚Р°С‚СЊРё: РѕРіРѕРЅС‘Рє, РґР°С‚С‹, СЃРѕСЂС‚РёСЂРѕРІРєР° ===== */
 .ac-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .art-fire{font-size:17px;line-height:1}
 .ac-foot{margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -732,7 +731,7 @@ a.gcard.vnzh-item:hover .g-more{gap:11px}
 .sort-btn:hover{border-color:rgba(213,38,43,.35);color:var(--text)}
 .sort-btn.active{background:var(--grad);border-color:transparent;color:#fff}
 
-/* ===== согласие на обработку данных ===== */
+/* ===== СЃРѕРіР»Р°СЃРёРµ РЅР° РѕР±СЂР°Р±РѕС‚РєСѓ РґР°РЅРЅС‹С… ===== */
 .consent{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--text-2);
   line-height:1.45;margin:14px 0 6px;cursor:pointer;user-select:none}
 .consent input[type=checkbox]{margin-top:2px;width:16px;height:16px;accent-color:var(--red);cursor:pointer;flex-shrink:0}
@@ -741,7 +740,7 @@ a.gcard.vnzh-item:hover .g-more{gap:11px}
 .consent.err{color:var(--red)}
 .consent.err input[type=checkbox]{outline:2px solid var(--red);outline-offset:2px;border-radius:3px}
 
-/* ===== подсказка к гамбургеру (только мобильная) ===== */
+/* ===== РїРѕРґСЃРєР°Р·РєР° Рє РіР°РјР±СѓСЂРіРµСЂСѓ (С‚РѕР»СЊРєРѕ РјРѕР±РёР»СЊРЅР°СЏ) ===== */
 .burger-hint{display:none}
 @media(max-width:600px){
   .nav-r{gap:10px}
@@ -758,14 +757,14 @@ a.gcard.vnzh-item:hover .g-more{gap:11px}
   .bh-arrow{width:30px;height:18px}
 }
 
-/* ===== блок госпошлины ===== */
+/* ===== Р±Р»РѕРє РіРѕСЃРїРѕС€Р»РёРЅС‹ ===== */
 .fee-note{margin:30px 0;padding:20px 24px;border:1px solid var(--line-2);border-radius:16px;background:var(--card-2)}
 .fee-note h3{margin:0 0 10px;font-size:18px;font-weight:800;color:var(--text)}
 .fee-note p{margin:8px 0}
 .fee-note ul{margin:8px 0 4px}
 .fee-note .fee-dis{margin:14px 0 0;font-size:12.5px;color:var(--text-2);line-height:1.5}
 
-/* ===== пакеты — золотые акцентные карточки ===== */
+/* ===== РїР°РєРµС‚С‹ вЂ” Р·РѕР»РѕС‚С‹Рµ Р°РєС†РµРЅС‚РЅС‹Рµ РєР°СЂС‚РѕС‡РєРё ===== */
 .pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
 @media(max-width:760px){.pkg-grid{grid-template-columns:1fr}}
 .bcard .price-add{font-weight:600;font-size:12px;opacity:.7;white-space:nowrap}
@@ -778,7 +777,7 @@ a.gcard.vnzh-item:hover .g-more{gap:11px}
 .bcard.gold .go{border-color:rgba(42,34,6,.38);color:#2a2206}
 .bcard.gold:hover .go{background:#2a2206;border-color:#2a2206;color:#EBD180}
 
-/* ===== кнопка ВЫГОДА (третья в героя, статичная) ===== */
+/* ===== РєРЅРѕРїРєР° Р’Р«Р“РћР”Рђ (С‚СЂРµС‚СЊСЏ РІ РіРµСЂРѕСЏ, СЃС‚Р°С‚РёС‡РЅР°СЏ) ===== */
 .btn-vygoda{display:inline-flex;align-items:center;gap:9px;
   padding:14px 26px;border-radius:999px;font-weight:900;font-size:15px;letter-spacing:.06em;
   color:#1a1300;
@@ -816,7 +815,7 @@ a.gcard.vnzh-item:hover .g-more{gap:11px}
 @keyframes vfpulse{0%,100%{opacity:.75;transform:scale(1) rotate(0)}50%{opacity:1;transform:scale(1.3) rotate(20deg)}}
 @media(max-width:600px){.btn-vygoda{padding:12px 22px;font-size:14px}}
 
-/* ===== цена пакета: зачёркнутая раздельная + выгодная ===== */
+/* ===== С†РµРЅР° РїР°РєРµС‚Р°: Р·Р°С‡С‘СЂРєРЅСѓС‚Р°СЏ СЂР°Р·РґРµР»СЊРЅР°СЏ + РІС‹РіРѕРґРЅР°СЏ ===== */
 .pkg-price{margin:4px 0 22px;padding:18px 22px;border-radius:16px;border:1px solid rgba(180,140,30,.35);
   background:linear-gradient(135deg,rgba(235,209,128,.22),rgba(205,165,58,.12))}
 .pkg-price-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
@@ -825,7 +824,7 @@ a.gcard.vnzh-item:hover .g-more{gap:11px}
 .pkg-save{margin-top:8px;display:inline-block;font-size:13px;font-weight:800;color:#2a2206;
   background:linear-gradient(135deg,#EBD180,#CDA53A);padding:5px 12px;border-radius:999px}
 
-/* ===== лендинги под рекламу ===== */
+/* ===== Р»РµРЅРґРёРЅРіРё РїРѕРґ СЂРµРєР»Р°РјСѓ ===== */
 .lp-nav{position:relative;background:transparent;border-bottom:none}
 .lp-wrap{min-height:calc(100vh - 80px);display:flex;align-items:center;justify-content:center;padding:32px 20px}
 .lp-card{max-width:680px;width:100%;background:linear-gradient(180deg,var(--card),var(--card-2));
