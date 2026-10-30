@@ -557,7 +557,7 @@
     if(!document.querySelector('.quick-form'))return;
     var bar=document.createElement('div');
     bar.className='mbar';
-    bar.innerHTML='<div class="mbar-l">Оставить заявку</div><div class="mbar-b"><button type="button" class="btn-wa notranslate" translate="no">WhatsApp</button><button type="button" class="btn-tg notranslate" translate="no">Telegram</button></div><label class="mbar-c"><input type="checkbox" class="mbar-consent"><span>Согласен на обработку <a href="/politika.html" target="_blank" rel="noopener">персональных данных</a></span></label>';
+    bar.innerHTML='<div class="mbar-b"><button type="button" class="btn-wa notranslate" translate="no">WhatsApp</button><button type="button" class="btn-tg notranslate" translate="no">Telegram</button></div><label class="mbar-c"><input type="checkbox" class="mbar-consent"><span>Согласен на обработку <a href="/politika.html" target="_blank" rel="noopener">персональных данных</a></span></label>';
     document.body.appendChild(bar);
     document.body.classList.add('has-mbar');
     var bc=bar.querySelector('.mbar-consent'),bcl=bar.querySelector('.mbar-c');

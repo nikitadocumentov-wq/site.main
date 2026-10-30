@@ -891,3 +891,5 @@ a.gcard.vnzh-item:hover .g-more{gap:11px}
 }
 @keyframes mbarShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 @media(max-width:760px){body.has-mbar .toast{bottom:122px!important;z-index:9995}}
+@media(max-width:760px){.mbar{padding-top:10px}body.has-mbar{padding-bottom:96px}body.has-mbar .toast{bottom:108px!important}}
+@media(max-width:760px){.mbar-b button{font-family:inherit;font-weight:700;font-size:15px;line-height:1}}
