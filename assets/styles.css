@@ -860,3 +860,25 @@ a.gcard.vnzh-item:hover .g-more{gap:11px}
   .lp-btn{padding:16px 20px;font-size:16px}
   .lp-trust{flex-direction:column;gap:8px}
 }
+/* === 30.10.2026: быстрая заявка, программа лояльности на форме, липкая панель === */
+.burger-hint{display:none!important}
+.qf-loyal{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:#FFF3B8;border:1px solid #EBD180;color:#2a2206;text-decoration:none;font-size:14px;line-height:1.35}
+.qf-loyal b{color:#2a2206}
+.qf-gift{font-size:20px;line-height:1;flex:0 0 auto}
+.qf-more{margin-left:auto;white-space:nowrap;font-weight:700;color:#B0851F;font-size:13px}
+.qf-btns{flex-direction:column}
+.qf-btns .btn{justify-content:center;width:100%}
+.qf-note{font-size:12px;opacity:.65;margin:0}
+.mbar{display:none}
+@media(max-width:760px){
+  .mbar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:9990;padding:6px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(250,246,236,.97);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 -6px 20px rgba(0,0,0,.08);transform:translateY(0);opacity:1;transition:transform .35s ease,opacity .35s ease}
+  .mbar.mbar-hide{transform:translateY(110%);opacity:0;pointer-events:none}
+  .mbar-l{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;opacity:.6;text-align:center;margin-bottom:5px}
+  .mbar-b{display:flex;gap:8px}
+  .mbar-b button{flex:1;border:0;color:#fff;font:700 15px/1 inherit;font-family:inherit;padding:14px 10px;border-radius:14px;cursor:pointer}
+  .mbar-b .btn-wa{background:linear-gradient(135deg,#2BD46F,#1EA855)}
+  .mbar-b .btn-tg{background:linear-gradient(135deg,#3DBDF0,#2092D2)}
+  body.has-mbar{padding-bottom:84px}
+}
+@media(prefers-reduced-motion:reduce){.mbar{transition:none}}
+@media(max-width:600px){.qf-loyal{flex-wrap:wrap;row-gap:4px}.qf-loyal>span:nth-child(2){flex:1 1 calc(100% - 40px)}.qf-more{margin-left:30px}}

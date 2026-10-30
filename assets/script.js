@@ -510,7 +510,69 @@
     var h1=vp.querySelector('h1');
     return h1?h1.textContent.trim():'Главная';
   }
+
+  /* Быстрая заявка (30.10.2026): без полей — только кнопки мессенджеров + согласие */
+  function quickService(form){
+    var vp=(form&&form.closest)?form.closest('.vpage'):document.querySelector('.vpage');
+    var id=vp?vp.id:'';
+    if(PAGE_SERVICE_MAP[id])return PAGE_SERVICE_MAP[id];
+    if(!vp||id==='p-index')return '';
+    var h1=vp.querySelector('h1'); return h1?h1.textContent.trim():'';
+  }
+  function quickMsg(form){
+    var svc=quickService(form);
+    var t='Здравствуйте! Пишу с сайта documenti.ge.';
+    if(svc)t+='\nИнтересует: «'+svc+'».';
+    t+='\nПодскажите, пожалуйста, что нужно для начала.';
+    return t;
+  }
+  function quickOpen(method,form,formType){
+    var t=quickMsg(form);
+    if(method==='whatsapp'){window.open('https://wa.me/995591339448?text='+encodeURIComponent(t),'_blank');toast('Открываем WhatsApp…');}
+    else{window.open('https://t.me/documenti_ge?text='+encodeURIComponent(t),'_blank');toast('Открываем Telegram…');}
+    if(window.gtag){
+      gtag('event','contact_click',{method:method,form_type:formType});
+      gtag('event','generate_lead',{method:method,form_type:formType,page_path:location.pathname});
+    }
+  }
+  function setupQuick(form){
+    var consentEl=form.querySelector('.f-consent'),errEl=form.querySelector('.f-err');
+    var formType=form.classList.contains('lead-form')?'main':'mini';
+    function ok(){
+      var lab=consentEl?consentEl.closest('.consent'):null;
+      if(consentEl&&!consentEl.checked){
+        if(lab)lab.classList.add('err');
+        if(errEl)errEl.textContent='Подтвердите согласие на обработку персональных данных.';
+        return false;
+      }
+      if(lab)lab.classList.remove('err'); if(errEl)errEl.textContent=''; return true;
+    }
+    if(consentEl)consentEl.addEventListener('change',function(){if(consentEl.checked){var l=consentEl.closest('.consent');if(l)l.classList.remove('err');if(errEl)errEl.textContent='';}});
+    var wa=form.querySelector('.f-wa'),tg=form.querySelector('.f-tg');
+    if(wa)wa.addEventListener('click',function(){if(ok())quickOpen('whatsapp',form,formType);});
+    if(tg)tg.addEventListener('click',function(){if(ok())quickOpen('telegram',form,formType);});
+  }
+  /* Липкая панель на телефоне: прячется, когда на экране форма заявки */
+  function setupStickyBar(){
+    if(!document.querySelector('.quick-form'))return;
+    var bar=document.createElement('div');
+    bar.className='mbar';
+    bar.innerHTML='<div class="mbar-l">Оставить заявку</div><div class="mbar-b"><button type="button" class="btn-wa notranslate" translate="no">WhatsApp</button><button type="button" class="btn-tg notranslate" translate="no">Telegram</button></div>';
+    document.body.appendChild(bar);
+    document.body.classList.add('has-mbar');
+    var bs=bar.querySelectorAll('button');
+    bs[0].addEventListener('click',function(){quickOpen('whatsapp',document.querySelector('.quick-form'),'sticky');});
+    bs[1].addEventListener('click',function(){quickOpen('telegram',document.querySelector('.quick-form'),'sticky');});
+    if(!('IntersectionObserver' in window))return;
+    var seen=new Set();
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)seen.add(e.target);else seen.delete(e.target);});
+      bar.classList.toggle('mbar-hide',seen.size>0);
+    },{threshold:0.15});
+    document.querySelectorAll('.quick-form, .mini-cta').forEach(function(el){io.observe(el);});
+  }
   function setupForm(form){
+    if(form.classList.contains('quick-form'))return setupQuick(form);
     enhanceForm(form);
     var nameEl=form.querySelector('.f-name'),
         cityEl=form.querySelector('.f-city'),
@@ -640,6 +702,7 @@
     });
   }
   document.querySelectorAll('.lead-form,.mini-form').forEach(setupForm);
+  setupStickyBar();
 
   /* карусель популярных услуг — подсветка описания при наведении */
   var uwDesc=document.getElementById('uwDesc');
