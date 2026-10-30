@@ -628,6 +628,7 @@
       toast('Открываем WhatsApp с вашей заявкой…');
       submitLeadTable();
       if(window.gtag)gtag('event','contact_click',{method:'whatsapp',form_type:form.className});
+      if(window.gtag)gtag('event','generate_lead',{method:'whatsapp',form_type:form.classList.contains('partner-form')?'partner':(form.classList.contains('mini-form')?'mini':'main'),page_path:location.pathname});
     });
     if(tgBtn)tgBtn.addEventListener('click',function(){
       if(!validate())return;
@@ -635,6 +636,7 @@
       toast('Открываем Telegram с вашей заявкой…');
       submitLeadTable();
       if(window.gtag)gtag('event','contact_click',{method:'telegram',form_type:form.className});
+      if(window.gtag)gtag('event','generate_lead',{method:'telegram',form_type:form.classList.contains('partner-form')?'partner':(form.classList.contains('mini-form')?'mini':'main'),page_path:location.pathname});
     });
   }
   document.querySelectorAll('.lead-form,.mini-form').forEach(setupForm);
