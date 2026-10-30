@@ -882,3 +882,12 @@ a.gcard.vnzh-item:hover .g-more{gap:11px}
 }
 @media(prefers-reduced-motion:reduce){.mbar{transition:none}}
 @media(max-width:600px){.qf-loyal{flex-wrap:wrap;row-gap:4px}.qf-loyal>span:nth-child(2){flex:1 1 calc(100% - 40px)}.qf-more{margin-left:30px}}
+@media(max-width:760px){
+  .mbar-c{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:7px;font-size:11.5px;line-height:1.2;opacity:.85;cursor:pointer}
+  .mbar-c input{width:16px;height:16px;margin:0;flex:0 0 16px;accent-color:#D5262B}
+  .mbar-c a{color:#D5262B}
+  .mbar-c.err{color:#D5262B;opacity:1;animation:mbarShake .4s}
+  body.has-mbar{padding-bottom:104px}
+}
+@keyframes mbarShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@media(max-width:760px){body.has-mbar .toast{bottom:122px!important;z-index:9995}}

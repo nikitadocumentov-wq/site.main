@@ -557,12 +557,18 @@
     if(!document.querySelector('.quick-form'))return;
     var bar=document.createElement('div');
     bar.className='mbar';
-    bar.innerHTML='<div class="mbar-l">Оставить заявку</div><div class="mbar-b"><button type="button" class="btn-wa notranslate" translate="no">WhatsApp</button><button type="button" class="btn-tg notranslate" translate="no">Telegram</button></div>';
+    bar.innerHTML='<div class="mbar-l">Оставить заявку</div><div class="mbar-b"><button type="button" class="btn-wa notranslate" translate="no">WhatsApp</button><button type="button" class="btn-tg notranslate" translate="no">Telegram</button></div><label class="mbar-c"><input type="checkbox" class="mbar-consent"><span>Согласен на обработку <a href="/politika.html" target="_blank" rel="noopener">персональных данных</a></span></label>';
     document.body.appendChild(bar);
     document.body.classList.add('has-mbar');
+    var bc=bar.querySelector('.mbar-consent'),bcl=bar.querySelector('.mbar-c');
+    /* галочка синхронна с галочками в формах на странице */
+    function syncAll(v){document.querySelectorAll('.quick-form .f-consent').forEach(function(c){c.checked=v;var l=c.closest('.consent');if(l&&v)l.classList.remove('err');});bc.checked=v;if(v)bcl.classList.remove('err');}
+    bc.addEventListener('change',function(){syncAll(bc.checked);});
+    document.querySelectorAll('.quick-form .f-consent').forEach(function(c){c.addEventListener('change',function(){syncAll(c.checked);});});
+    function barOk(){if(bc.checked)return true;bcl.classList.remove('err');void bcl.offsetWidth;bcl.classList.add('err');toast('Отметьте согласие на обработку персональных данных');return false;}
     var bs=bar.querySelectorAll('button');
-    bs[0].addEventListener('click',function(){quickOpen('whatsapp',document.querySelector('.quick-form'),'sticky');});
-    bs[1].addEventListener('click',function(){quickOpen('telegram',document.querySelector('.quick-form'),'sticky');});
+    bs[0].addEventListener('click',function(){if(barOk())quickOpen('whatsapp',document.querySelector('.quick-form'),'sticky');});
+    bs[1].addEventListener('click',function(){if(barOk())quickOpen('telegram',document.querySelector('.quick-form'),'sticky');});
     if(!('IntersectionObserver' in window))return;
     var seen=new Set();
     var io=new IntersectionObserver(function(es){
