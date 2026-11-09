@@ -1,5 +1,16 @@
 (function(){
   'use strict';
+
+  /* Конверсия для Google Ads (через GA4): клик по Telegram / WhatsApp / телефону = заявка (generate_lead) */
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('a[href]'):null; if(!a) return;
+    var h=(a.getAttribute('href')||'').toLowerCase(), m='';
+    if(h.indexOf('t.me/')>-1||h.indexOf('tg://')===0||h.indexOf('telegram')>-1) m='telegram';
+    else if(h.indexOf('wa.me/')>-1||h.indexOf('whatsapp')>-1) m='whatsapp';
+    else if(h.indexOf('tel:')===0) m='phone';
+    if(!m||typeof window.gtag!=='function') return;
+    window.gtag('event','generate_lead',{method:m,page:location.pathname,transport_type:'beacon'});
+  },true);
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var touch=window.matchMedia('(hover:none),(pointer:coarse)').matches;
 
